@@ -112,3 +112,21 @@ if (musicBtn && musicIcon && musicText && oneBeerAudio) {
     musicText.textContent = 'Play One Beer - MF DOOM';
   });
 }
+const fistBumpBtn = document.getElementById('fistBumpBtn');
+const fistBumpCount = document.getElementById('fistBumpCount');
+const FIST_BUMP_KEY = 'izreinante_fist_bumps';
+
+if (fistBumpBtn && fistBumpCount) {
+  let bumps = Number(localStorage.getItem(FIST_BUMP_KEY)) || 0;
+  fistBumpCount.textContent = bumps;
+
+  fistBumpBtn.addEventListener('click', () => {
+    bumps += 1;
+    localStorage.setItem(FIST_BUMP_KEY, bumps);
+    fistBumpCount.textContent = bumps;
+
+    fistBumpBtn.classList.remove('bumped');
+    void fistBumpBtn.offsetWidth;
+    fistBumpBtn.classList.add('bumped');
+  });
+}
